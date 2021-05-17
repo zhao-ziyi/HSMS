@@ -15,7 +15,7 @@ Student getStudentById(int id) {
 }
 
 int getStudentsByNameFilter(Student stu, void *arg) {
-    return strcmp(stu, (char *)arg) == 0;
+    return strcmp(stu->name, (char *)arg) == 0;
 }
 StudentArray getStudentsByName(const char *name) {
     return filter(getStudentsByNameFilter, (void *)name);
@@ -37,7 +37,7 @@ Student registerStudent(const char *name, int id, int gender) {
 int setStudentName(Student stu, const char *name) {
     if (stu == NULL)
         return FAIL;
-    int length = strlen(name);
+    int length = (int)strlen(name);
     if (!nameValidator(name)) {
         strncpy(stu->name, name, length);
         return SUCCESS;
@@ -48,9 +48,10 @@ int setStudentName(Student stu, const char *name) {
 
 int setStudentGender(Student stu, int gender) {
     if (stu == NULL) return FAIL;
-    if (stu != MALE && stu != FEMALE) return FAIL;
+    if (stu->gender != MALE && stu->gender != FEMALE) return FAIL;
     stu->gender = gender;
     saveStudentsToFile(DATA_FILE);
+    return SUCCESS;
 }
 
 int setStudentGrade(Student stu, int grade) {
@@ -60,6 +61,7 @@ int setStudentGrade(Student stu, int grade) {
         return FAIL;
     stu->grade = grade;
     saveStudentsToFile(DATA_FILE);
+    return SUCCESS;
 }
 
 int setStudentScore(Student stu, double score) {
@@ -67,6 +69,7 @@ int setStudentScore(Student stu, double score) {
         return FAIL;
     if (score > 5.0 || score < 0)
         return FAIL;
-    stu->grade = score;
+    stu->score = score;
     saveStudentsToFile(DATA_FILE);
+    return SUCCESS;
 }

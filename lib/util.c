@@ -109,7 +109,7 @@ StudentArray filter(int(*func)(Student, void*), void *arg) {
 }
 
 int nameValidator(const char *name) {
-    int length = strlen(name);
+    int length = (int)strlen(name);
     if (length >= MAX_NAME_LENGTH) {
         return 1;
     }
