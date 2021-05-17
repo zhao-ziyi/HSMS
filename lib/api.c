@@ -40,8 +40,8 @@ int setStudentName(Student stu, const char *name) {
     int length = (int)strlen(name);
     if (!nameValidator(name)) {
         strncpy(stu->name, name, length);
-        return SUCCESS;
         saveStudentsToFile(DATA_FILE);
+        return SUCCESS;
     }
     return FAIL;
 }

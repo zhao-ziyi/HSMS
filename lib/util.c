@@ -5,11 +5,13 @@
 
 int init() {
     STUDENTS = loadStudentsFromFile(DATA_FILE);
+    return SUCCESS;
 }
 
 int defer() {
     saveStudentsToFile(DATA_FILE);
     destroyStudentArray(STUDENTS);
+    return SUCCESS;
 }
 
 Student newStudent(int id, const char *name, int gender) {
@@ -44,12 +46,13 @@ int appendToArray(StudentArray array, Student student) {
         array->tail = s;
         array->head = s;
         array->length = 1;
-        return 0;
+        return SUCCESS;
     }
     array->length++;
     s->item = student;
     array->tail->next = s;
     array->tail = s;
+    return SUCCESS;
 }
 
 int destroyStudentArray(StudentArray array) {
@@ -59,6 +62,7 @@ int destroyStudentArray(StudentArray array) {
         free(item->item);
         free(item);
     }
+    return SUCCESS;
 }
 
 FILE *openfile(const char *filename, const char *mode) {
@@ -95,6 +99,7 @@ int saveStudentsToFile(const char *filename) {
         fprintf(fp, "%s %d %d %d %lf\n", stu->name, stu->id, stu->gender, stu->grade, stu->score);
     }
     fclose(fp);
+    return SUCCESS;
 }
 
 StudentArray filter(int(*func)(Student, void*), void *arg) {
