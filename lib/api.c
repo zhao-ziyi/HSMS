@@ -1,6 +1,8 @@
 #include <string.h>
 #include "api.h"
 
+extern StudentArray STUDENTS;
+
 int getStudentByIdFilter(Student stu, void *arg) {
     return stu->id == *((int *)arg);
 }

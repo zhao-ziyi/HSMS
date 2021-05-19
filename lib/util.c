@@ -3,6 +3,11 @@
 #include <string.h>
 #include "util.h"
 
+/*!
+ * 储存全体选学生信息
+ */
+StudentArray STUDENTS;
+
 int init() {
     STUDENTS = loadStudentsFromFile(DATA_FILE);
     return SUCCESS;

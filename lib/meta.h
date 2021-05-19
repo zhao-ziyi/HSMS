@@ -36,9 +36,9 @@ struct _StudentArray {
 };
 typedef struct _StudentArray* StudentArray;
 
-/*!
- * 储存全体选学生信息
- */
-StudentArray STUDENTS;
+///*!
+// * 储存全体选学生信息
+// */
+//StudentArray STUDENTS;
 
 #endif //HSMS_META_H
