@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 #include "api.h"
 
 extern StudentArray STUDENTS;
@@ -74,4 +75,16 @@ int setStudentScore(Student stu, double score) {
     stu->score = score;
     saveStudentsToFile(DATA_FILE);
     return SUCCESS;
+}
+
+int deleteStudent(Student stu) {
+    for (StudentItem it=STUDENTS->head; it->next!=NULL; it=it->next) {
+        if (it->next->item == stu) {
+            StudentItem target = it->next;
+            StudentItem child = target->next;
+            it->next = child;
+            free(target->item);
+            free(target);
+        }
+    }
 }

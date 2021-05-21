@@ -68,4 +68,6 @@ int setStudentGrade(Student stu, int grade);
  */
 int setStudentScore(Student stu, double score);
 
+int deleteStudent(Student stu);
+
 #endif //HSMS_API_H
