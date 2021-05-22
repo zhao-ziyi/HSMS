@@ -6,9 +6,9 @@
 /*!
  * 储存全体选学生信息
  */
-StudentArray STUDENTS;
+//StudentArray STUDENTS;
 
-int init() {
+/*int init() {
     STUDENTS = loadStudentsFromFile(DATA_FILE);
     return SUCCESS;
 }
@@ -18,6 +18,7 @@ int defer() {
     destroyStudentArray(STUDENTS);
     return SUCCESS;
 }
+*/
 
 Student newStudent(int id, const char *name, int gender) {
     if (nameValidator(name)==FAIL) {
@@ -37,6 +38,7 @@ StudentItem newStudentItem(Student stu) {
     return s;
 }
 
+//void init
 StudentArray newStudentArray() {
     StudentArray a = (StudentArray)malloc(sizeof(struct _StudentArray));
     a->length = 0;
@@ -64,8 +66,8 @@ int destroyStudentArray(StudentArray array) {
     StudentItem tmp;
     for (StudentItem item=array->head; item!=NULL; item = tmp) {
         tmp = item->next;
-        free(item->item);
-        free(item);
+//        free(item->item);
+//        free(item);
     }
     return SUCCESS;
 }
@@ -97,9 +99,9 @@ StudentArray loadStudentsFromFile(const char *filename) {
     return array;
 }
 
-int saveStudentsToFile(const char *filename) {
+int saveStudentsToFile(const char *filename,StudentArray students) {
     FILE *fp = openfile(filename, "w");
-    for (StudentItem it=STUDENTS->head; it!=NULL; it=it->next) {
+    for (StudentItem it=students->head; it!=NULL; it=it->next) {
         Student stu = it->item;
         fprintf(fp, "%s %d %d %d %lf\n", stu->name, stu->id, stu->gender, stu->grade, stu->score);
     }
@@ -107,7 +109,7 @@ int saveStudentsToFile(const char *filename) {
     return SUCCESS;
 }
 
-StudentArray filter(int(*func)(Student, void*), void *arg) {
+StudentArray filter(int(*func)(Student, void*), void *arg,StudentArray STUDENTS) {
     StudentArray array = newStudentArray();
 
     for (StudentItem it=STUDENTS->head; it!=NULL; it=it->next) {

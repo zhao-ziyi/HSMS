@@ -50,7 +50,7 @@ StudentArray loadStudentsFromFile(const char *filename);
  * @param filename
  * @return status
  */
-int saveStudentsToFile(const char *filename);
+int saveStudentsToFile(const char *filename,StudentArray students);
 
 /*!
  * destroyStudentArray - 销毁一个 StudentArray
@@ -64,7 +64,7 @@ int destroyStudentArray(StudentArray array);
  * @param func - 比较函数
  * @return StudentArray
  */
-StudentArray filter(int(*func)(Student, void *), void *arg);
+StudentArray filter(int(*func)(Student, void *), void *arg,StudentArray students);
 
 /*!
  * nameValidator - 学生名字验证器，检查学生名字是否超过长度，包含空格等
